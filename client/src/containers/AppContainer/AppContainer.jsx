@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 import { useQuery } from 'react-query';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { AppPage } from '../../components/application/AppPage';
-import { useFetch } from '../../hooks/use_fetch';
-import { fetchJSON } from '../../utils/fetchers';
-import { AuthModalContainer } from '../AuthModalContainer';
-import { NewPostModalContainer } from '../NewPostModalContainer';
-import { NotFoundContainer } from '../NotFoundContainer';
-import { PostContainer } from '../PostContainer';
-import { TermContainer } from '../TermContainer';
-import { TimelineContainer } from '../TimelineContainer';
-import { UserProfileContainer } from '../UserProfileContainer';
+
+const AuthModalContainer = lazy(() => import('../AuthModalContainer').then((m) => ({ default: m.AuthModalContainer })));
+const NewPostModalContainer = lazy(() =>
+  import('../NewPostModalContainer').then((m) => ({ default: m.NewPostModalContainer })),
+);
+
+const NotFoundContainer = lazy(() =>
+  import('../NotFoundContainer').then((module) => ({ default: module.NotFoundContainer })),
+);
+const PostContainer = lazy(() => import('../PostContainer').then((m) => ({ default: m.PostContainer })));
+const TermContainer = lazy(() => import('../TermContainer').then((m) => ({ default: m.TermContainer })));
+const TimelineContainer = lazy(() => import('../TimelineContainer').then((m) => ({ default: m.TimelineContainer })));
+const UserProfileContainer = lazy(() =>
+  import('../UserProfileContainer').then((m) => ({ default: m.UserProfileContainer })),
+);
 
 /** @type {React.VFC} */
 const AppContainer = () => {
-  const { pathname } = useLocation();
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
   const { data: activeUser, isLoading } = useQuery('/api/v1/me', () => fetch('/api/v1/me').then((res) => res.json()));
 
   const [modalType, setModalType] = React.useState('none');
@@ -37,7 +38,13 @@ const AppContainer = () => {
   }
 
   return (
-    <>
+    <Suspense
+      fallback={
+        <Helmet>
+          <title>読込中 - CAwitter</title>
+        </Helmet>
+      }
+    >
       <AppPage
         activeUser={activeUser}
         onRequestOpenAuthModal={handleRequestOpenAuthModal}
@@ -52,11 +59,11 @@ const AppContainer = () => {
         </Routes>
       </AppPage>
 
-      {modalType === 'auth' ? (
+      {modalType === 'auth' && (
         <AuthModalContainer onRequestCloseModal={handleRequestCloseModal} onUpdateActiveUser={setActiveUser} />
-      ) : null}
-      {modalType === 'post' ? <NewPostModalContainer onRequestCloseModal={handleRequestCloseModal} /> : null}
-    </>
+      )}
+      {modalType === 'post' && <NewPostModalContainer onRequestCloseModal={handleRequestCloseModal} />}
+    </Suspense>
   );
 };
 

@@ -1,9 +1,13 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 /** @type {React.VFC} */
 const TermPage = () => {
   return (
     <article className="pb-16 px-2 leading-relaxed md:pt-2 md:px-4">
+      <Helmet>
+        <title>利用規約 - CAwitter</title>
+      </Helmet>
       <h1 className="mb-2 mt-4 text-3xl font-bold">利用規約</h1>
 
       <p>
