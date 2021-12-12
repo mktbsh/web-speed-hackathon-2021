@@ -9,12 +9,6 @@ import users from '../seeds/users.json';
 
 import { Comment, Image, Movie, Post, PostsImagesRelation, ProfileImage, Sound, User } from './models';
 
-import { performance } from "perf_hooks";
-
-function measure(name, size, start, end) {
-  console.log(`${size} ${name} inserted in ${(end - start)} milliseconds`);
-}
-
 async function insertSeeds() {
   await ProfileImage.bulkCreate(profileImages, { logging: false });
   await Image.bulkCreate(images, { logging: false });
