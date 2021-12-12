@@ -4,8 +4,8 @@ import session from 'express-session';
 
 import { apiRouter } from './routes/api';
 import { staticRouter } from './routes/static';
-import compression from "compression";
-import helmet from "helmet";
+import compression from 'compression';
+import helmet from 'helmet';
 
 const app = Express();
 
@@ -23,7 +23,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.raw({ limit: '10mb' }));
 
 app.use(compression());
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  }),
+);
 
 app.use((_req, res, next) => {
   res.header({
