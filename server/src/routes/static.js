@@ -18,15 +18,16 @@ router.use(
 
 router.use(
   serveStatic(PUBLIC_PATH, {
-    etag: false,
-    lastModified: false,
+    etag: true,
+    lastModified: true,
+    maxAge: '1y',
   }),
 );
 
 router.use(
   serveStatic(CLIENT_DIST_PATH, {
-    etag: false,
-    lastModified: false,
+    etag: true,
+    lastModified: true,
   }),
 );
 
