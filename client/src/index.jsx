@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 
+import { AppProvider } from './providers/AppProvider';
 import { AppContainer } from './containers/AppContainer';
 
 window.addEventListener('load', () => {
   ReactDOM.render(
-    <BrowserRouter>
+    <AppProvider>
       <AppContainer />
-    </BrowserRouter>,
+    </AppProvider>,
     document.getElementById('app'),
   );
 });
