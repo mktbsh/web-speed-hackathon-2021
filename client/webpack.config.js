@@ -22,7 +22,7 @@ const config = {
     },
     static: [PUBLIC_PATH, UPLOAD_PATH],
   },
-  devtool: isProduction ? 'hidden-source-map' : 'source-map',
+  devtool: isProduction ? false : 'source-map',
   entry: {
     main: [
       'core-js',
