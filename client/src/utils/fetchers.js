@@ -1,18 +1,31 @@
 import { gzip } from 'pako';
 
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    const error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  }
+}
+
 /**
  * @param {string} url
  * @returns {Promise<ArrayBuffer>}
  */
 async function fetchBinary(url) {
-  const result = await $.ajax({
-    async: false,
-    dataType: 'binary',
+  return await fetch(url, {
     method: 'GET',
-    responseType: 'arraybuffer',
-    url,
-  });
-  return result;
+    headers: {
+      'Content-Type': 'application/octet-stream',
+    },
+  })
+    .then((res) => {
+      checkStatus(res);
+      return res.arrayBuffer();
+    })
+    .catch((err) => console.error(err));
 }
 
 /**
@@ -21,13 +34,18 @@ async function fetchBinary(url) {
  * @returns {Promise<T>}
  */
 async function fetchJSON(url) {
-  const result = await $.ajax({
-    async: false,
-    dataType: 'json',
+  console.log(`fetchJSON: ${url}`);
+  return await fetch(url, {
     method: 'GET',
-    url,
-  });
-  return result;
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      checkStatus(response);
+      return response.json();
+    })
+    .catch((err) => console.error(err));
 }
 
 /**
