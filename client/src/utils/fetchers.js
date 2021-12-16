@@ -55,18 +55,18 @@ async function fetchJSON(url) {
  * @returns {Promise<T>}
  */
 async function sendFile(url, file) {
-  const result = await $.ajax({
-    async: false,
-    data: file,
-    dataType: 'json',
+  return await fetch(url, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/octet-stream',
     },
-    method: 'POST',
-    processData: false,
-    url,
-  });
-  return result;
+    body: file,
+  })
+    .then((response) => {
+      checkStatus(response);
+      return response.json();
+    })
+    .catch((err) => console.error(err));
 }
 
 /**
