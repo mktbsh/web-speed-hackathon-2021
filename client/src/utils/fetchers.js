@@ -80,19 +80,19 @@ async function sendJSON(url, data) {
   const uint8Array = new TextEncoder().encode(jsonString);
   const compressed = gzip(uint8Array);
 
-  const result = await $.ajax({
-    async: false,
-    data: compressed,
-    dataType: 'json',
+  return await fetch(url, {
+    method: 'POST',
     headers: {
       'Content-Encoding': 'gzip',
       'Content-Type': 'application/json',
     },
-    method: 'POST',
-    processData: false,
-    url,
-  });
-  return result;
+    body: compressed,
+  })
+    .then((response) => {
+      checkStatus(response);
+      return response.json();
+    })
+    .catch((err) => console.error(err));
 }
 
 export { fetchBinary, fetchJSON, sendFile, sendJSON };

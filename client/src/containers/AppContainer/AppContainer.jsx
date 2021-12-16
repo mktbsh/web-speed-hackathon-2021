@@ -5,6 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 
 import { AppPage } from '../../components/application/AppPage';
 
+import { fetchJSON } from '../../utils/fetchers';
+
 const AuthModalContainer = lazy(() => import('../AuthModalContainer').then((m) => ({ default: m.AuthModalContainer })));
 const NewPostModalContainer = lazy(() =>
   import('../NewPostModalContainer').then((m) => ({ default: m.NewPostModalContainer })),
@@ -22,7 +24,12 @@ const UserProfileContainer = lazy(() =>
 
 /** @type {React.VFC} */
 const AppContainer = () => {
-  const { data: activeUser, isLoading } = useQuery('/api/v1/me', () => fetch('/api/v1/me').then((res) => res.json()));
+  const [activeUser, setActiveUser] = React.useState(null);
+  const { data, isLoading } = useQuery('/api/v1/me', () => fetchJSON('/api/v1/me'));
+
+  React.useEffect(() => {
+    setActiveUser(data);
+  }, [data]);
 
   const [modalType, setModalType] = React.useState('none');
   const handleRequestOpenAuthModal = React.useCallback(() => setModalType('auth'), []);
