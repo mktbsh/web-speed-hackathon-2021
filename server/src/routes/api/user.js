@@ -62,6 +62,7 @@ router.get('/users/:username/posts', async (req, res) => {
   const posts = await Post.findAll({
     limit: req.query.limit,
     offset: req.query.offset,
+    order: [['id', 'DESC']],
     where: {
       userId: user.id,
     },
