@@ -9,10 +9,12 @@
     "build": "cross-env NODE_ENV=production webpack",
     "develop": "cross-env NODE_ENV=development webpack serve"
   },
+  "browserslist": [
+    "> 2%"
+  ],
   "dependencies": {
     "buffer": "6.0.3",
     "classnames": "2.3.1",
-    "core-js": "3.19.1",
     "fast-average-color": "7.0.1",
     "gifler": "github:themadcreator/gifler#v0.3.0",
     "image-size": "1.0.0",
@@ -64,9 +66,6 @@
   "typesync": {
     "ignoreDeps": [
       "dev"
-    ],
-    "ignorePackages": [
-      "core-js"
     ]
   }
 }
