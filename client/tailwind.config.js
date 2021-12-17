@@ -1,8 +1,3 @@
 module.exports = {
-  mode: 'jit',
-  darkMode: false,
-  purge: [
-    './src/**/*.js',
-    './src/**/*.jsx',
-  ]
+  content: ['./src/**/*.js', './src/**/*.jsx'],
 };
