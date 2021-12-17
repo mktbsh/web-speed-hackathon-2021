@@ -40,12 +40,10 @@ async function fetchJSON(url) {
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-    .then((response) => {
-      checkStatus(response);
-      return response.json();
-    })
-    .catch((err) => console.error(err));
+  }).then((response) => {
+    checkStatus(response);
+    return response.json();
+  });
 }
 
 /**
