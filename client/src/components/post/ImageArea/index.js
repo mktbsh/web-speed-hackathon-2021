@@ -1,1 +1,0 @@
-export { ImageArea } from './ImageArea';

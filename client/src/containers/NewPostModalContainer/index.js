@@ -1,1 +1,0 @@
-export { NewPostModalContainer } from './NewPostModalContainer';
