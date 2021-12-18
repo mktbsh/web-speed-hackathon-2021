@@ -1,0 +1,18 @@
+import '../../styles/terms.css';
+import { useSetHelmet } from '../../contexts/HelmetContext';
+import { useMatch } from 'react-location';
+import { LocationGenerics } from '../../Router';
+
+export const TermsPage = () => {
+  useSetHelmet({
+    title: '利用規約',
+  });
+
+  const {
+    data: { terms },
+  } = useMatch<LocationGenerics>();
+
+  if (!terms) return null;
+
+  return <article dangerouslySetInnerHTML={{ __html: terms }} />;
+};

@@ -6,7 +6,7 @@ import { Router } from 'react-location';
 import { ReactLocationDevtools } from 'react-location-devtools';
 
 import App from './App';
-import { location, routes } from './router';
+import { location, routes } from './Router';
 import { HelmetStateProvider } from './contexts/HelmetContext';
 
 ReactDOM.render(

@@ -18,7 +18,7 @@ export const Navigation = memo(({ user }: Props) => (
       ) : (
         <NavigationItem icon={<FaSignInAlt />} text="サインイン" />
       )}
-      <NavigationItem href="/terms" icon={<FaBalanceScale />} text="利用規約" />
+      <NavigationItem href="/terms" preload={1} icon={<FaBalanceScale />} text="利用規約" />
     </ul>
   </nav>
 ));

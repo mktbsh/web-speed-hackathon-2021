@@ -3,17 +3,19 @@ import { Link } from 'react-location';
 
 type Props = {
   href?: string;
+  preload?: number;
   text: string;
   icon: React.ReactNode;
   onClick?: () => void;
 };
 
-const Component = ({ href, text, icon, onClick }: Props) => {
+const Component = ({ href, preload, text, icon, onClick }: Props) => {
   return (
     <li>
       {href ? (
         <Link
           to={href}
+          preload={preload}
           getActiveProps={() => ({ style: { color: '#065F46' } })}
           className="flex flex-col items-center justify-center w-12 h-12 hover:bg-green-50 rounded-full sm:px-2 sm:w-24 sm:h-auto sm:rounded lg:flex-row lg:justify-start lg:px-4 lg:py-2 lg:w-auto lg:h-auto lg:rounded-full"
         >
