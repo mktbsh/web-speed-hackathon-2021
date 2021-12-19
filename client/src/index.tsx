@@ -1,3 +1,4 @@
+import * as serviceWorkerRegistration from './lib/service-worker/registration';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
@@ -17,7 +18,6 @@ const queryClient = new QueryClient({
     queries: {
       retry: false,
       refetchOnWindowFocus: false,
-      refetchOnMount: false,
       staleTime: 5 * 60 * 1000,
     },
   },
@@ -37,3 +37,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root'),
 );
+
+serviceWorkerRegistration.register();

@@ -1,6 +1,6 @@
 import { Link } from 'react-location';
-import type { Post } from '../../types';
-import { getProfileImagePath } from '../../utils';
+import type { Post, TImage } from '../../types';
+import { classNames, getImagePath, getProfileImagePath } from '../../utils';
 
 type Props = {
   post: Post;
@@ -43,12 +43,51 @@ export const TimelineItem = ({ post }: Props) => {
           </p>
           <p className="text-gray-800 leading-relaxed">{post.text}</p>
           {post.images && post.images?.length > 0 ? (
-            <div className="relative mt-2 w-full">{/* <ImageArea images={post.images} /> */}</div>
+            <div className="relative mt-2 w-full">
+              <ImageArea images={post.images} />
+            </div>
           ) : null}
           {post.movie ? <div className="relative mt-2 w-full">{/* <MovieArea movie={post.movie} /> */}</div> : null}
           {post.sound ? <div className="relative mt-2 w-full">{/* <SoundArea sound={post.sound} /> */}</div> : null}
         </div>
       </div>
     </article>
+  );
+};
+
+type ImageAreaProps = {
+  images: TImage[];
+};
+
+const ImageArea = ({ images }: ImageAreaProps) => {
+  return (
+    <div className="relative w-full aspect-video">
+      <div className="absolute inset-0">
+        <div className="grid gap-1 grid-cols-2 grid-rows-2 w-full h-full border border-gray-300 rounded-lg overflow-hidden">
+          {images.map((image, idx) => {
+            return (
+              <div
+                key={image.id}
+                className={classNames(
+                  'bg-gray-300',
+                  images.length === 1 ? 'col-span-2' : 'col-span-1',
+                  images.length > 2 && (images.length !== 3 || idx !== 0) ? 'row-span-1' : '',
+                  images.length <= 2 || (images.length === 3 && idx === 0) ? 'row-span-2' : '',
+                )}
+              >
+                <div className="relative w-full h-full overflow-hidden">
+                  <img
+                    alt={image.alt}
+                    className="relative w-full h-full object-cover"
+                    src={getImagePath(image.id)}
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 };
