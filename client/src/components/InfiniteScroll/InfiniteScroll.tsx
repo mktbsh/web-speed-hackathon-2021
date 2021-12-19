@@ -2,22 +2,19 @@ import React from 'react';
 import InfiniteScroller from 'react-infinite-scroller';
 import { useInfiniteQuery } from 'react-query';
 
-import { InfiniteResponse, Post } from '../../types';
+import { InfiniteResponse } from '../../types';
 
-type PostsResponse = {
-  posts: Post[];
-  currentPage: number;
-  previousPage: number | null;
-  nextPage: number | null;
+type FetcherOption = {
+  pageParam?: number;
 };
 
 type Props<T> = {
   queryKey: string;
-  fetcher: () => Promise<InfiniteResponse<T>>;
-  render: (item: T) => React.ReactNode;
+  fetcher: (options: FetcherOption) => Promise<InfiniteResponse<T>>;
+  renderItem: (item: T) => React.ReactNode;
 };
 
-export const InfiniteScroll = <T,>({ queryKey, fetcher, render }: Props<T>) => {
+export const InfiniteScroll = <T,>({ queryKey, fetcher, renderItem }: Props<T>) => {
   const { data, fetchNextPage, isLoading, isError, hasNextPage } = useInfiniteQuery<InfiniteResponse<T>>(
     queryKey,
     fetcher,
@@ -26,13 +23,13 @@ export const InfiniteScroll = <T,>({ queryKey, fetcher, render }: Props<T>) => {
     },
   );
 
+  const items = React.useMemo(() => {
+    return data?.pages.map((page) => page.items).flat();
+  }, [data?.pages]);
+
   if (isLoading) return <p>Loading...</p>;
 
   if (isError) return <p>There was an error</p>;
-
-  const items = React.useMemo(() => {
-    return data?.pages.map((page) => page.items).flat();
-  }, [data]);
 
   return (
     <InfiniteScroller
@@ -40,7 +37,7 @@ export const InfiniteScroll = <T,>({ queryKey, fetcher, render }: Props<T>) => {
       hasMore={hasNextPage}
       loader={<div key={`infinite-scroll-${queryKey}-loader`}>Loading...</div>}
     >
-      {items && items.map((item) => render(item))}
+      {items && items.map((item) => renderItem(item))}
     </InfiniteScroller>
   );
 };

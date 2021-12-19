@@ -18,7 +18,7 @@ router.get('/posts', async (req, res) => {
   });
 
   const posts = {
-    posts: rows,
+    items: rows,
     currentPage: pageNum,
     previousPage: pageNum - 1 === 0 ? null : pageNum - 1,
     nextPage: (pageNum + 1) * perPage < count ? pageNum + 1 : null,

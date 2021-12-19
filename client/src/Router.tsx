@@ -1,7 +1,7 @@
 import { Route, ReactLocation, MakeGenerics } from 'react-location';
 import { ReactLocationSimpleCache } from 'react-location-simple-cache';
 import { NotFoundPage } from './pages/NotFound';
-import { HomePage } from './pages/Home';
+import { HomePage } from './pages/Home/Home.page';
 
 export type LocationGenerics = MakeGenerics<{
   LoaderData: {
