@@ -12,9 +12,11 @@ type Props<T> = {
   queryKey: string;
   fetcher: (options: FetcherOption) => Promise<InfiniteResponse<T>>;
   renderItem: (item: T) => React.ReactNode;
+  withLoader: JSX.Element;
+  withError: JSX.Element;
 };
 
-export const InfiniteScroll = <T,>({ queryKey, fetcher, renderItem }: Props<T>) => {
+export const InfiniteScroll = <T,>({ queryKey, fetcher, renderItem, withLoader, withError }: Props<T>) => {
   const { data, fetchNextPage, isLoading, isError, hasNextPage } = useInfiniteQuery<InfiniteResponse<T>>(
     queryKey,
     fetcher,
@@ -27,52 +29,17 @@ export const InfiniteScroll = <T,>({ queryKey, fetcher, renderItem }: Props<T>) 
     return data?.pages.map((page) => page.items).flat();
   }, [data?.pages]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return withLoader;
 
-  if (isError) return <p>There was an error</p>;
+  if (isError) return withError;
 
   return (
     <InfiniteScroller
       loadMore={() => fetchNextPage()}
       hasMore={hasNextPage}
-      loader={<div key={`infinite-scroll-${queryKey}-loader`}>Loading...</div>}
+      loader={<React.Fragment key={`inifinite-scroll-${queryKey}-loader`}>{withLoader}</React.Fragment>}
     >
       {items && items.map((item) => renderItem(item))}
     </InfiniteScroller>
   );
 };
-
-// export const InfiniteScroll = <T,>() => {
-//   const { data, fetchNextPage, isLoading, isError, hasNextPage } = useInfiniteQuery<InfiniteResponse<T>>(
-//     '/v1/posts',
-//     async ({ pageParam = 1 }) => await fetch(`/api/v1/posts?page=${pageParam}`).then((res) => res.json()),
-//     {
-//       getNextPageParam: (lastPage) => lastPage.nextPage ?? false,
-//     },
-//   );
-
-//   if (isLoading) return <p>Loading...</p>;
-
-//   if (isError) return <p>There was an error</p>;
-
-//   return (
-//     <InfiniteScroller
-//       loadMore={() => fetchNextPage()}
-//       hasMore={hasNextPage}
-//       loader={<div key="infinite-scroll-loader">Loading...</div>}
-//     >
-//       {data &&
-//         data.pages.map((page) => (
-//           <React.Fragment key={`page-number-${page.currentPage}`}>
-//             {page.posts.map((post) => (
-//               <div key={post.id}>
-//                 <p>{post.id}</p>
-//                 <p>{post.text}</p>
-//                 <p>{post.createdAt}</p>
-//               </div>
-//             ))}
-//           </React.Fragment>
-//         ))}
-//     </InfiniteScroller>
-//   );
-// };
