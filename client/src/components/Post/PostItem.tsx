@@ -1,13 +1,16 @@
+import { memo } from 'react';
 import { Link } from 'react-location';
 import type { Post } from '../../types';
 import { getProfileImagePath } from '../../utils';
-import { ImageArea } from '../ImageArea/ImageArea';
+import { ImageArea } from '../MediaArea';
+import { MovieArea } from '../MediaArea/MovieArea';
 
 type Props = {
   post: Post;
 };
 
-export const PostItem = ({ post }: Props) => {
+export const PostItem = memo(({ post }: Props) => {
+  console.log(`render: ${post.id}`);
   const createdAt = new Date(post.createdAt);
 
   return (
@@ -48,10 +51,14 @@ export const PostItem = ({ post }: Props) => {
               <ImageArea images={post.images} />
             </div>
           ) : null}
-          {post.movie ? <div className="relative mt-2 w-full">{/* <MovieArea movie={post.movie} /> */}</div> : null}
+          {post.movie ? (
+            <div className="relative mt-2 w-full">
+              <MovieArea movie={post.movie} />
+            </div>
+          ) : null}
           {post.sound ? <div className="relative mt-2 w-full">{/* <SoundArea sound={post.sound} /> */}</div> : null}
         </div>
       </div>
     </article>
   );
-};
+});

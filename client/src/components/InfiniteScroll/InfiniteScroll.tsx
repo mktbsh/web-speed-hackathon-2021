@@ -16,6 +16,14 @@ type Props<T> = {
   withError: JSX.Element;
 };
 
+interface SectionProps {
+  children: React.ReactNode;
+}
+
+const PageSection = React.memo(({ children }: SectionProps) => {
+  return <section>{children}</section>;
+});
+
 export const InfiniteScroll = <T,>({ queryKey, fetcher, renderItem, withLoader, withError }: Props<T>) => {
   const { data, fetchNextPage, isLoading, isError, hasNextPage } = useInfiniteQuery<InfiniteResponse<T>>(
     queryKey,
@@ -24,10 +32,6 @@ export const InfiniteScroll = <T,>({ queryKey, fetcher, renderItem, withLoader, 
       getNextPageParam: (lastPage) => lastPage.nextPage ?? false,
     },
   );
-
-  const items = React.useMemo(() => {
-    return data?.pages.map((page) => page.items).flat();
-  }, [data?.pages]);
 
   if (isLoading) return withLoader;
 
@@ -39,7 +43,12 @@ export const InfiniteScroll = <T,>({ queryKey, fetcher, renderItem, withLoader, 
       hasMore={hasNextPage}
       loader={<React.Fragment key={`inifinite-scroll-${queryKey}-loader`}>{withLoader}</React.Fragment>}
     >
-      {items && items.map((item) => renderItem(item))}
+      {data &&
+        data.pages.map((page) => (
+          <PageSection key={`infinite-scroll-${queryKey}-page${page.currentPage}`}>
+            {page.items.map((item) => renderItem(item))}
+          </PageSection>
+        ))}
     </InfiniteScroller>
   );
 };
