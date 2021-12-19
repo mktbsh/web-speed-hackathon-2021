@@ -19,9 +19,9 @@ export type ProfileImage = TImage;
 export type Post = {
   createdAt: string;
   id: string;
-  images: Array<TImage>;
-  movie: Movie;
-  sound: Sound;
+  images: Array<TImage> | null;
+  movie: Movie | null;
+  sound: Sound | null;
   text: string;
   user: User;
 };
@@ -43,3 +43,16 @@ export type Comment = {
   text: string;
   user: User;
 };
+
+export type TermsResponse = {
+  rawHTML: string;
+};
+
+export type InfiniteResponse<T> = {
+  items: T[];
+  currentPage: number;
+  previousPage: number | null;
+  nextPage: number | null;
+};
+
+export type PostsResponse = InfiniteResponse<Post>;

@@ -9,14 +9,31 @@ import App from './App';
 import { location, routes } from './Router';
 import { HelmetStateProvider } from './contexts/HelmetContext';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      staleTime: 5 * 60 * 1000,
+    },
+  },
+});
+
 ReactDOM.render(
   <React.StrictMode>
-    <HelmetStateProvider>
-      <Router routes={routes} location={location}>
-        <App />
-        <ReactLocationDevtools />
-      </Router>
-    </HelmetStateProvider>
+    <QueryClientProvider client={queryClient}>
+      <HelmetStateProvider>
+        <Router routes={routes} location={location}>
+          <App />
+          <ReactLocationDevtools />
+        </Router>
+      </HelmetStateProvider>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

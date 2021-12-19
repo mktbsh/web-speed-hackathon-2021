@@ -6,11 +6,23 @@ import { Comment, Post } from '../../models';
 const router = Router();
 
 router.get('/posts', async (req, res) => {
-  const posts = await Post.findAll({
-    limit: req.query.limit,
-    offset: req.query.offset,
+  const { limit, page } = req.query;
+
+  const perPage = parseInt(limit) || 10;
+  const pageNum = parseInt(page) || 1;
+
+  const { count, rows } = await Post.findAndCountAll({
+    limit: perPage,
+    offset: (pageNum - 1) * perPage,
     order: [['id', 'DESC']],
   });
+
+  const posts = {
+    posts: rows,
+    currentPage: pageNum,
+    previousPage: pageNum - 1 === 0 ? null : pageNum - 1,
+    nextPage: (pageNum + 1) * perPage < count ? pageNum + 1 : null,
+  };
 
   return res.status(200).type('application/json').send(posts);
 });
