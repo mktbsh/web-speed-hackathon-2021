@@ -8,32 +8,22 @@ import { ReactLocationDevtools } from 'react-location-devtools';
 
 import App from './App';
 import { location, routes } from './Router';
-import { HelmetStateProvider } from './contexts/HelmetContext';
 
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { AppProvider } from './providers/AppProvider';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-      refetchOnWindowFocus: false,
-      staleTime: 5 * 60 * 1000,
-    },
-  },
-});
+window.__BUILD_INFO__ = {
+  BUILD_DATE: process.env.BUILD_DATE,
+  COMMIT_HASH: process.env.COMMIT_HASH,
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <HelmetStateProvider>
-        <Router routes={routes} location={location}>
-          <App />
-          <ReactLocationDevtools />
-        </Router>
-      </HelmetStateProvider>
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <AppProvider>
+      <Router routes={routes} location={location}>
+        <App />
+        <ReactLocationDevtools />
+      </Router>
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
