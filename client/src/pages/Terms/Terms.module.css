@@ -1,15 +1,15 @@
-article {
+.terms {
   @apply pb-16 px-2 leading-relaxed md:pt-2 md:px-4;
 }
 
-h1 {
+.terms > h1 {
   @apply mb-2 mt-4 text-3xl font-bold;
 }
 
-h2 {
+.terms > h2 {
   @apply mb-2 mt-4 text-2xl font-bold;
 }
 
-ol {
+.terms > ol {
   @apply pl-8 list-decimal;
 }

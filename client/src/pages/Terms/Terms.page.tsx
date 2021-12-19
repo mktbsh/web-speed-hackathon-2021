@@ -1,4 +1,4 @@
-import '../../styles/terms.css';
+import styles from './Terms.module.css';
 import { useSetHelmet } from '../../contexts/HelmetContext';
 import { useMatch } from 'react-location';
 import { LocationGenerics } from '../../Router';
@@ -14,5 +14,5 @@ export const TermsPage = () => {
 
   if (!terms) return null;
 
-  return <article dangerouslySetInnerHTML={{ __html: terms }} />;
+  return <article className={styles.terms} dangerouslySetInnerHTML={{ __html: terms }} />;
 };
