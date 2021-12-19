@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { convertImage } from '../../converters/convert_image';
 import { UPLOAD_PATH } from '../../paths';
+import sharp from 'sharp';
 
 // 変換した画像の拡張子
 const EXTENSION = 'webp';
@@ -32,10 +33,12 @@ router.post('/images', async (req, res) => {
     width: undefined,
   });
 
+  const { width, height } = await sharp(converted).metadata();
+
   const filePath = path.resolve(UPLOAD_PATH, `./images/${imageId}.${EXTENSION}`);
   await fs.writeFile(filePath, converted);
 
-  return res.status(200).type('application/json').send({ id: imageId });
+  return res.status(200).type('application/json').send({ id: imageId, width, height });
 });
 
 export { router as imageRouter };

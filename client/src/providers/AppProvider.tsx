@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { HelmetStateProvider } from '../contexts/HelmetContext';
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: false,

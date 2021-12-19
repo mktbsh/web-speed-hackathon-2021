@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 type Props = {
-  root: React.MutableRefObject<HTMLDivElement>;
-  target: React.MutableRefObject<HTMLDivElement>;
+  root?: React.RefObject<HTMLDivElement>;
+  target: React.RefObject<HTMLDivElement>;
   onIntersect: () => void;
   threshold?: number;
   rootMargin?: string;
@@ -42,5 +42,6 @@ export const useIntersectionObserver = ({
     return () => {
       observer.unobserve(el);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target.current, enabled]);
 };

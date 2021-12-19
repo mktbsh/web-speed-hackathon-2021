@@ -1,10 +1,11 @@
 import { InfiniteScroll } from '../../components/InfiniteScroll';
 import { PostsLoader } from '../../components/Loader';
 import { PostItem } from '../../components/Post';
+import { ReactQueryKeys } from '../../configs/ReactQueryKeys';
 import { useSetHelmet } from '../../contexts/HelmetContext';
 import { AspidaClient } from '../../lib/AspidaClient';
 
-const key = 'posts-timeline-inifinite';
+const key = ReactQueryKeys.posts;
 
 export const HomePage = () => {
   useSetHelmet({ title: 'タイムライン' });

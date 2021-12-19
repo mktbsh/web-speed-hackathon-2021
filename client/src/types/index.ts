@@ -12,6 +12,8 @@ export type User = {
 export type TImage = {
   alt: string;
   id: string;
+  width: number;
+  height: number;
 };
 
 export type ProfileImage = TImage;

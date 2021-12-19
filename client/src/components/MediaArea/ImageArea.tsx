@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { TImage } from '../../types';
 import { classNames, getImagePath } from '../../utils';
 import { AspectRatio } from '../AspectRatio';
+import { CoveredImage } from '../CoveredImage';
 
 type Props = {
   images: TImage[];
@@ -23,12 +24,7 @@ export const ImageArea = memo(({ images }: Props) => {
               )}
             >
               <div className="relative w-full h-full overflow-hidden">
-                <img
-                  alt={image.alt}
-                  className="relative w-full h-full object-cover"
-                  src={image.id.match(/^https?:\/\//) ? image.id : getImagePath(image.id)}
-                  loading="lazy"
-                />
+                <CoveredImage src={getImagePath(image.id)} alt={image.alt} width={image.width} height={image.height} />
               </div>
             </div>
           );

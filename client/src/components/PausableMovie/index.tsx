@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { classNames, getGifPath, getMoviePath, getMoviePostarPath, getPrefersReducedMotion } from '../../utils';
+import { getGifPath, getMoviePath, getMoviePostarPath, getPrefersReducedMotion } from '../../utils';
 import { AspectRatio } from '../AspectRatio';
 
 import { FaPause, FaPlay } from 'react-icons/fa';
