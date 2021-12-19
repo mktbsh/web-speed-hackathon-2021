@@ -1,4 +1,4 @@
-export const TimeLineLoader = () => (
+export const PostsLoader = () => (
   <article className="px-1 sm:px-4">
     <div className="animate-pulse flex pb-4 pt-2 px-2 border-b border-gray-300 sm:px-4">
       <div className="flex-grow-0 flex-shrink-0 pr-2 sm:pr-4">

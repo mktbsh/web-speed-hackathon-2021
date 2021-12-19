@@ -1,5 +1,6 @@
 import { InfiniteScroll } from '../../components/InfiniteScroll';
-import { TimelineItem, TimeLineLoader } from '../../components/Timeline';
+import { PostsLoader } from '../../components/Loader';
+import { PostItem } from '../../components/Post';
 import { useSetHelmet } from '../../contexts/HelmetContext';
 import { AspidaClient } from '../../lib/AspidaClient';
 
@@ -21,9 +22,9 @@ export const HomePage = () => {
       queryKey={key}
       fetcher={fetcher}
       renderItem={(item) => {
-        return <TimelineItem key={`${key}-${item.id}`} post={item} />;
+        return <PostItem key={`${key}-${item.id}`} post={item} />;
       }}
-      withLoader={<TimeLineLoader />}
+      withLoader={<PostsLoader />}
       withError={<p>There was an error</p>}
     />
   );

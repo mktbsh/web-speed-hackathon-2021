@@ -7,7 +7,7 @@ type Props = {
   post: Post;
 };
 
-export const TimelineItem = ({ post }: Props) => {
+export const PostItem = ({ post }: Props) => {
   const createdAt = new Date(post.createdAt);
 
   return (
