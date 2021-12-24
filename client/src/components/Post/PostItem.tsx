@@ -11,7 +11,6 @@ type Props = {
 };
 
 export const PostItem = memo(({ post }: Props) => {
-  console.log(`render: ${post.id}`);
   const createdAt = new Date(post.createdAt);
 
   return (
