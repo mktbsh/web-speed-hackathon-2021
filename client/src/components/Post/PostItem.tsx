@@ -4,6 +4,7 @@ import type { Post } from '../../types';
 import { getProfileImagePath } from '../../utils';
 import { ImageArea } from '../MediaArea';
 import { MovieArea } from '../MediaArea/MovieArea';
+import { SoundArea } from '../SoundArea';
 
 type Props = {
   post: Post;
@@ -56,7 +57,11 @@ export const PostItem = memo(({ post }: Props) => {
               <MovieArea movie={post.movie} />
             </div>
           ) : null}
-          {post.sound ? <div className="relative mt-2 w-full">{/* <SoundArea sound={post.sound} /> */}</div> : null}
+          {post.sound ? (
+            <div className="relative mt-2 w-full">
+              <SoundArea sound={post.sound} />
+            </div>
+          ) : null}
         </div>
       </div>
     </article>
