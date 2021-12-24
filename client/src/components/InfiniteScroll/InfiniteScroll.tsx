@@ -1,8 +1,6 @@
 import React from 'react';
-import { useMemo } from 'react';
 import InfiniteScroller from 'react-infinite-scroller';
 import { useInfiniteQuery } from 'react-query';
-import { useIntersectionObserver } from '../../hooks/useIntersection';
 
 import { InfiniteResponse } from '../../types';
 
