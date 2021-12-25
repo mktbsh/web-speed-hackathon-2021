@@ -22,6 +22,7 @@ export const PostItem = memo(({ post }: Props) => {
               className="block w-14 h-14 bg-gray-300 border border-gray-300 rounded-full hover:opacity-95 overflow-hidden sm:w-16 sm:h-16"
               to={`/users/${post.user.username}`}
             >
+              <span className="invisible">to {post.user.username}</span>
               <img alt={post.user.profileImage.alt} src={getProfileImagePath(post.user.profileImage.id)} />
             </Link>
           </div>
