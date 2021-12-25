@@ -1,18 +1,18 @@
 import { PostPageItem } from '../../components/Post/PostPageItem';
 import { useMatch } from 'react-location';
 import { LocationGenerics } from '../../Router';
-import { useSetHelmet } from '../../contexts/HelmetContext';
+import { NotFoundPage } from '../NotFound';
+import { Post } from '../../types';
+
+const isPost = (arg: any): arg is Post => {
+  return arg && !!(arg as Post).text;
+};
 
 export const PostPage = () => {
   const {
     data: { post },
   } = useMatch<LocationGenerics>();
 
-  useSetHelmet({
-    title: post ? `${post.user.name} さんのつぶやき` : undefined,
-  });
-
-  if (!post) return null;
-
-  return <PostPageItem post={post} />;
+  if (isPost(post)) return <PostPageItem post={post} />;
+  return <NotFoundPage />;
 };

@@ -3,12 +3,17 @@ import { InfiniteScroll } from '../InfiniteScroll';
 import { AspidaClient } from '../../lib/AspidaClient';
 import { CommentItem } from './CommentItem';
 import { Post } from '../../types';
+import { useSetHelmet } from '../../contexts/HelmetContext';
 
 type Props = {
   post: Post;
 };
 
 export const PostPageItem = ({ post }: Props) => {
+  useSetHelmet({
+    title: `${post.user.name} さんのつぶやき`,
+  });
+
   const key = AspidaClient.api.v1.posts._id(post.id).comments.$path();
 
   const fetcher = async ({ pageParam = 1 }) =>
