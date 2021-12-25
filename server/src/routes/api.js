@@ -20,6 +20,12 @@ router.use(imageRouter);
 router.use(soundRouter);
 router.use(authRouter);
 
+router.get('/healthcheck', async (req, res) => {
+  return res.status(200).type('application/json').send({
+    status: 'ok',
+  });
+});
+
 router.use(async (err, _req, _res, _next) => {
   if (err instanceof ValidationError) {
     throw new httpErrors.BadRequest();
