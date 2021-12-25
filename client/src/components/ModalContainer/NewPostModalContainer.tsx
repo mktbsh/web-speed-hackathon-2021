@@ -33,19 +33,22 @@ export const NewPostModalContainer = ({ onRequestCloseModal }: Props) => {
     setHasError(false);
   }, []);
 
-  const handleSubmit = useCallback(async (params: PostSubmitParams) => {
-    try {
-      setIsLoading(true);
-      const post = await sendNewPost(params);
-      onRequestCloseModal();
-      navigate({ to: `/posts/${post.id}` });
-      queryClient.invalidateQueries(ReactQueryKeys.posts, { exact: true });
-    } catch (_) {
-      setHasError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+  const handleSubmit = useCallback(
+    async (params: PostSubmitParams) => {
+      try {
+        setIsLoading(true);
+        const post = await sendNewPost(params);
+        onRequestCloseModal();
+        navigate({ to: `/posts/${post.id}` });
+        queryClient.invalidateQueries(ReactQueryKeys.posts, { exact: true });
+      } catch (_) {
+        setHasError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [navigate, onRequestCloseModal, queryClient],
+  );
 
   return (
     <Modal onRequestCloseModal={onRequestCloseModal}>
