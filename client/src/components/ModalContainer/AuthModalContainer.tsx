@@ -28,11 +28,11 @@ export const AuthModalContainer = ({ onRequestCloseModal }: Props) => {
           const user = await AspidaClient.api.v1.signup.$post({ body: params });
           queryClient.setQueryData(AspidaClient.api.v1.me.$path(), user);
         }
-        onRequestCloseModal();
       } catch (_err) {
         setHasError(true);
       } finally {
         setIsLoading(false);
+        onRequestCloseModal();
       }
     },
     [onRequestCloseModal, queryClient],
