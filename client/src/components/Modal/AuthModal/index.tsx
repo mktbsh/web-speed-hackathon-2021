@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import type { ChangeEvent, FormEvent } from 'react';
+import type { FormEvent } from 'react';
 import { ModalSubmitButton } from '../ModalSubmitButton';
 import { ModalErrorMessage } from '../ModalErrorMessage';
 import { AuthInput } from './AuthInput';
