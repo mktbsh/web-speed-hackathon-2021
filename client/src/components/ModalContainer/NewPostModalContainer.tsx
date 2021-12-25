@@ -1,6 +1,8 @@
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-location';
+import { useQueryClient } from 'react-query';
+import { ReactQueryKeys } from '../../configs/ReactQueryKeys';
 import { AspidaClient } from '../../lib/AspidaClient';
 import { sendImage, sendMovie, sendSound } from '../../lib/fetcher';
 import { Modal } from '../Modal/Modal';
@@ -22,6 +24,7 @@ const sendNewPost = async ({ images, movie, sound, text }: PostSubmitParams) => 
 };
 
 export const NewPostModalContainer = ({ onRequestCloseModal }: Props) => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +39,7 @@ export const NewPostModalContainer = ({ onRequestCloseModal }: Props) => {
       const post = await sendNewPost(params);
       onRequestCloseModal();
       navigate({ to: `/posts/${post.id}` });
+      queryClient.invalidateQueries(ReactQueryKeys.posts, { exact: true });
     } catch (_) {
       setHasError(true);
     } finally {
