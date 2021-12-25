@@ -1,1 +1,0 @@
-export { AuthModalPage } from './AuthModalPage';

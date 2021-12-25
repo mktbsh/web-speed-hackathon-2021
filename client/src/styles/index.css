@@ -1,0 +1,8 @@
+@import-normalize;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: '源暎エムゴ', sans-serif;
+}

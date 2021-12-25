@@ -7,6 +7,7 @@
   },
   "workspaces": [
     "client",
+    "frontend",
     "server"
   ],
   "engines": {

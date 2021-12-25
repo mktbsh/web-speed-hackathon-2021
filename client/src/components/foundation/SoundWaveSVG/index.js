@@ -1,1 +1,0 @@
-export { SoundWaveSVG } from './SoundWaveSVG';
