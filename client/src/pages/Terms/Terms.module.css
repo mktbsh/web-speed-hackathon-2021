@@ -10,6 +10,6 @@
   @apply mb-2 mt-4 text-2xl font-bold;
 }
 
-.terms > ol {
+.terms ol {
   @apply pl-8 list-decimal;
 }
