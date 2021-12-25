@@ -81,3 +81,14 @@ export type UserResponse = {
   profileImage?: ProfileImage;
   username: string;
 };
+
+export type NewPostResponse = {
+  id: string;
+  text: string;
+  userId: string;
+  images?: Array<TImage>;
+  movie?: Movie;
+  sound?: Sound;
+  createdAt: Date;
+  updatedAt: Date;
+};

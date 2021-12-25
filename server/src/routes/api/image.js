@@ -24,6 +24,8 @@ router.post('/images', async (req, res) => {
 
   const imageId = uuidv4();
 
+  console.log(`request image id: ${imageId}`);
+
   const converted = await convertImage(req.body, {
     // 画像の拡張子を指定する
     extension: EXTENSION,
@@ -35,10 +37,13 @@ router.post('/images', async (req, res) => {
 
   const { width, height } = await sharp(converted).metadata();
 
+  console.log(width);
+  console.log(height);
+
   const filePath = path.resolve(UPLOAD_PATH, `./images/${imageId}.${EXTENSION}`);
   await fs.writeFile(filePath, converted);
 
-  return res.status(200).type('application/json').send({ id: imageId, width, height });
+  return res.status(200).type('application/json').send({ id: imageId, width, height, alt: '' });
 });
 
 export { router as imageRouter };
