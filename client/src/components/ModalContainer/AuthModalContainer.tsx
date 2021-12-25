@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useQueryClient } from 'react-query';
 import { AspidaClient } from '../../lib/AspidaClient';
-import { UserResponse } from '../../types';
 import { AuthModal, SubmitParams } from '../Modal/AuthModal';
 import { Modal } from '../Modal/Modal';
 
@@ -14,10 +13,6 @@ export const AuthModalContainer = ({ onRequestCloseModal }: Props) => {
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const onUpdateActiveUser = (data: UserResponse) => {
-    queryClient.setQueryData(AspidaClient.api.v1.me.$path(), data);
-  };
-
   const handleResetError = useCallback(() => {
     setHasError(false);
   }, []);
@@ -28,10 +23,10 @@ export const AuthModalContainer = ({ onRequestCloseModal }: Props) => {
         setIsLoading(true);
         if (type === 'signin') {
           const user = await AspidaClient.api.v1.signin.$post({ body: params });
-          onUpdateActiveUser(user);
+          queryClient.setQueryData(AspidaClient.api.v1.me.$path(), user);
         } else if (type === 'signup') {
           const user = await AspidaClient.api.v1.signup.$post({ body: params });
-          onUpdateActiveUser(user);
+          queryClient.setQueryData(AspidaClient.api.v1.me.$path(), user);
         }
         onRequestCloseModal();
       } catch (_err) {
@@ -40,7 +35,7 @@ export const AuthModalContainer = ({ onRequestCloseModal }: Props) => {
         setIsLoading(false);
       }
     },
-    [onRequestCloseModal],
+    [onRequestCloseModal, queryClient],
   );
 
   return (
