@@ -41,7 +41,11 @@ export const PausableMovie = ({ id }: Props) => {
           <img src={getGifPath(id)} alt={`${id}.gif`} />
         </video>
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-16 h-16 text-white text-3xl bg-black bg-opacity-50 rounded-full transform opacity-0 group-hover:opacity-100">
-          {isPlaying ? <FaPause /> : <FaPlay />}
+          {isPlaying ? (
+            <FaPause className="inline-block leading-none fill-current" />
+          ) : (
+            <FaPlay className="inline-block leading-none fill-current" />
+          )}
         </div>
       </button>
     </AspectRatio>

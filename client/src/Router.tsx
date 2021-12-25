@@ -1,12 +1,13 @@
 import { Route, ReactLocation, MakeGenerics } from 'react-location';
 import { ReactLocationSimpleCache } from 'react-location-simple-cache';
 import { NotFoundPage } from './pages/NotFound';
-import { Post } from './types';
+import { Post, User } from './types';
 
 export type LocationGenerics = MakeGenerics<{
   LoaderData: {
     terms: string;
     post: Post;
+    user: User;
   };
 }>;
 
@@ -25,6 +26,15 @@ export const routes: Route[] = [
       {
         path: ':postId',
         import: () => import('./pages/Post/Post.module').then((m) => m.PostModule),
+      },
+    ],
+  },
+  {
+    path: 'users',
+    children: [
+      {
+        path: ':username',
+        import: () => import('./pages/UserProfile/UserProfile.module').then((m) => m.UserProfileModule),
       },
     ],
   },

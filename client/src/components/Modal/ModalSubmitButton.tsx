@@ -22,7 +22,7 @@ export const ModalSubmitButton = ({ children, disabled, loading, onClick }: Prop
       {loading && (
         <span className="pr-2">
           <span className="inline-block animate-spin">
-            <FaCircleNotch />
+            <FaCircleNotch className="inline-block leading-none fill-current" />
           </span>
         </span>
       )}

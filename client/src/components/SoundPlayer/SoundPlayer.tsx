@@ -43,7 +43,11 @@ export const SoundPlayer = ({ sound }: Props) => {
           onClick={handleTogglePlaying}
           type="button"
         >
-          {isPlaying ? <FaPause /> : <FaPlay />}
+          {isPlaying ? (
+            <FaPause className="inline-block leading-none fill-current" />
+          ) : (
+            <FaPlay className="inline-block leading-none fill-current" />
+          )}
         </button>
       </div>
       <div className="flex flex-col flex-grow flex-shrink pt-2 min-w-0 h-full">

@@ -59,16 +59,28 @@ router.get('/users/:username/posts', async (req, res) => {
     throw new httpErrors.NotFound();
   }
 
-  const posts = await Post.findAll({
-    limit: req.query.limit,
-    offset: req.query.offset,
+  const { limit, page } = req.query;
+
+  const perPage = parseInt(limit) || 10;
+  const pageNum = parseInt(page) || 1;
+
+  const { rows, count } = await Post.findAndCountAll({
+    limit: perPage,
+    offset: (pageNum - 1) * perPage,
     order: [['id', 'DESC']],
     where: {
       userId: user.id,
     },
   });
 
-  return res.status(200).type('application/json').send(posts);
+  const response = {
+    items: rows,
+    currentPage: pageNum,
+    previousPage: pageNum - 1 === 0 ? null : pageNum - 1,
+    nextPage: (pageNum + 1) * perPage < count ? pageNum + 1 : null,
+  };
+
+  return res.status(200).type('application/json').send(response);
 });
 
 export { router as userRouter };

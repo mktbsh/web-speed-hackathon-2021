@@ -108,19 +108,19 @@ export const NewPostModal = ({ hasError, isLoading, onResetError, onSubmit }: Pr
           <AttachFileInputButton
             accept="image/*"
             active={params.images.length !== 0}
-            icon={<FaImages />}
+            icon={<FaImages className="inline-block leading-none fill-current" />}
             onChange={handleChangeImages}
           />
           <AttachFileInputButton
             accept="audio/*"
             active={params.sound !== undefined}
-            icon={<FaMusic />}
+            icon={<FaMusic className="inline-block leading-none fill-current" />}
             onChange={handleChangeSound}
           />
           <AttachFileInputButton
             accept="video/*"
             active={params.movie !== undefined}
-            icon={<FaVideo />}
+            icon={<FaVideo className="inline-block leading-none fill-current" />}
             onChange={handleChangeMovie}
           />
         </p>

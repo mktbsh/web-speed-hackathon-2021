@@ -14,7 +14,11 @@ import { Methods as Methods4 } from './api/v1/signin'
 // prettier-ignore
 import { Methods as Methods5 } from './api/v1/signup'
 // prettier-ignore
-import { Methods as Methods6 } from './terms.json'
+import { Methods as Methods6 } from './api/v1/users/_username@string'
+// prettier-ignore
+import { Methods as Methods7 } from './api/v1/users/_username@string/posts'
+// prettier-ignore
+import { Methods as Methods8 } from './terms.json'
 
 // prettier-ignore
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
@@ -24,7 +28,9 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH2 = '/comments'
   const PATH3 = '/api/v1/signin'
   const PATH4 = '/api/v1/signup'
-  const PATH5 = '/terms.json'
+  const PATH5 = '/api/v1/users'
+  const PATH6 = '/posts'
+  const PATH7 = '/terms.json'
   const GET = 'GET'
   const POST = 'POST'
 
@@ -82,15 +88,36 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           $post: (option: { body: Methods5['post']['reqBody'], config?: T }) =>
             fetch<Methods5['post']['resBody']>(prefix, PATH4, POST, option).json().then(r => r.body),
           $path: () => `${prefix}${PATH4}`
+        },
+        users: {
+          _username: (val3: string) => {
+            const prefix3 = `${PATH5}/${val3}`
+
+            return {
+              posts: {
+                get: (option?: { query?: Methods7['get']['query'], config?: T }) =>
+                  fetch<Methods7['get']['resBody']>(prefix, `${prefix3}${PATH6}`, GET, option).json(),
+                $get: (option?: { query?: Methods7['get']['query'], config?: T }) =>
+                  fetch<Methods7['get']['resBody']>(prefix, `${prefix3}${PATH6}`, GET, option).json().then(r => r.body),
+                $path: (option?: { method?: 'get'; query: Methods7['get']['query'] }) =>
+                  `${prefix}${prefix3}${PATH6}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+              },
+              get: (option?: { config?: T }) =>
+                fetch<Methods6['get']['resBody']>(prefix, prefix3, GET, option).json(),
+              $get: (option?: { config?: T }) =>
+                fetch<Methods6['get']['resBody']>(prefix, prefix3, GET, option).json().then(r => r.body),
+              $path: () => `${prefix}${prefix3}`
+            }
+          }
         }
       }
     },
     terms_json: {
       get: (option?: { config?: T }) =>
-        fetch<Methods6['get']['resBody']>(prefix, PATH5, GET, option).json(),
+        fetch<Methods8['get']['resBody']>(prefix, PATH7, GET, option).json(),
       $get: (option?: { config?: T }) =>
-        fetch<Methods6['get']['resBody']>(prefix, PATH5, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH5}`
+        fetch<Methods8['get']['resBody']>(prefix, PATH7, GET, option).json().then(r => r.body),
+      $path: () => `${prefix}${PATH7}`
     }
   }
 }

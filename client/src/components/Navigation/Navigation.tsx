@@ -43,14 +43,33 @@ export const Navigation = memo(() => {
   return (
     <nav className="fixed z-10 bottom-0 left-0 right-0 h-12 bg-white border-t border-gray-300 lg:relative lg:w-48 lg:h-full lg:border-r lg:border-t-0">
       <ul className="relative grid grid-flow-col items-center justify-evenly lg:fixed lg:gap-2 lg:grid-flow-row lg:justify-start lg:p-2 lg:w-48 lg:h-full lg:auto-rows-min">
-        <NavigationItem href="/" icon={<FaHome />} text="ホーム" />
-        {activeUser && <NavigationItem icon={<FaEdit />} text="投稿する" onClick={handleOpenPostModal} />}
-        {activeUser ? (
-          <NavigationItem href={`/users/${activeUser.username}`} icon={<FaUser />} text="マイページ" />
-        ) : (
-          <NavigationItem icon={<FaSignInAlt />} text="サインイン" onClick={handleOpenAuthModal} />
+        <NavigationItem href="/" icon={<FaHome className="inline-block leading-none fill-current" />} text="ホーム" />
+        {activeUser && (
+          <NavigationItem
+            icon={<FaEdit className="inline-block leading-none fill-current" />}
+            text="投稿する"
+            onClick={handleOpenPostModal}
+          />
         )}
-        <NavigationItem href="/terms" preload={1} icon={<FaBalanceScale />} text="利用規約" />
+        {activeUser ? (
+          <NavigationItem
+            href={`/users/${activeUser.username}`}
+            icon={<FaUser className="inline-block leading-none fill-current" />}
+            text="マイページ"
+          />
+        ) : (
+          <NavigationItem
+            icon={<FaSignInAlt className="inline-block leading-none fill-current" />}
+            text="サインイン"
+            onClick={handleOpenAuthModal}
+          />
+        )}
+        <NavigationItem
+          href="/terms"
+          preload={1}
+          icon={<FaBalanceScale className="inline-block leading-none fill-current" />}
+          text="利用規約"
+        />
         <Suspense fallback={<div />}>
           {showAuthModal && <AuthModal onRequestCloseModal={handleCloseModal} />}
           {showPostModal && <PostModal onRequestCloseModal={handleCloseModal} />}
