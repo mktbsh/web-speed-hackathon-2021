@@ -6,6 +6,7 @@ import { LocationGenerics } from '../../Router';
 export const TermsPage = () => {
   useSetHelmet({
     title: '利用規約',
+    description: 'WebSpeedHackathon2021の利用規約ページです。',
   });
 
   const {

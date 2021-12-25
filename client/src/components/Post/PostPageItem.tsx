@@ -12,6 +12,8 @@ type Props = {
 export const PostPageItem = ({ post }: Props) => {
   useSetHelmet({
     title: `${post.user.name} さんのつぶやき`,
+    description: post.text,
+    canonical: `https://mktbsh-wsh2021.herokuapp.com/posts/${post.id}`,
   });
 
   const key = AspidaClient.api.v1.posts._id(post.id).comments.$path();

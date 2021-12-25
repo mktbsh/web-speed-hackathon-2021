@@ -13,6 +13,8 @@ type Props = {
 export const UserProfilePageItem = ({ user }: Props) => {
   useSetHelmet({
     title: `${user.name} さんのタイムライン`,
+    description: user.description,
+    canonical: `https://mktbsh-wsh2021.herokuapp.com/users/${user.username}`,
   });
 
   const key = AspidaClient.api.v1.users._username(user.username).posts.$path();
