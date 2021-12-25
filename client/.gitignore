@@ -12,6 +12,7 @@
 /build
 
 /public/*.map
+/public/sw.js
 
 # misc
 .DS_Store
