@@ -7,8 +7,9 @@ const router = Router();
 
 router.get('/me', async (req, res) => {
   if (req.session.userId === undefined) {
-    throw new httpErrors.Unauthorized();
+    return res.status(202).type('application/json').send({});
   }
+
   const user = await User.findByPk(req.session.userId);
 
   if (user === null) {
