@@ -11,6 +11,11 @@ import { location, routes } from './Router';
 
 import { AppProvider } from './providers/AppProvider';
 
+window.__BUILD_INFO__ = {
+  BUILD_DATE: process.env.BUILD_DATE,
+  COMMIT_HASH: process.env.COMMIT_HASH,
+};
+
 ReactDOM.render(
   <React.StrictMode>
     <AppProvider>

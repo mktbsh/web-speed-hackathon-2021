@@ -58,3 +58,26 @@ export type InfiniteResponse<T> = {
 };
 
 export type PostsResponse = InfiniteResponse<Post>;
+
+export type SignInReqBody = {
+  name: string;
+  password: string;
+  username: string;
+};
+
+export type SignUpReqBody = {
+  name: string;
+  password: string;
+  username: string;
+};
+
+export type UserResponse = {
+  createdAt?: string;
+  description?: string;
+  id?: string;
+  name: string;
+  password: string;
+  posts?: Array<Post>;
+  profileImage?: ProfileImage;
+  username: string;
+};
