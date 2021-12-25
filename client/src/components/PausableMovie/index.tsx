@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { getGifPath, getMoviePath, getMoviePostarPath, getPrefersReducedMotion } from '../../utils';
+import { getMoviePath, getMoviePostarPath, getPrefersReducedMotion } from '../../utils';
 import { AspectRatio } from '../AspectRatio';
 
 import { FaPause, FaPlay } from 'react-icons/fa';
@@ -43,7 +43,6 @@ export const PausableMovie = ({ id }: Props) => {
           poster={getMoviePostarPath(id)}
         >
           <source src={getMoviePath(id)} type="video/webm" />
-          <img src={getGifPath(id)} alt={`${id}.gif`} />
         </video>
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-16 h-16 text-white text-3xl bg-black bg-opacity-50 rounded-full transform opacity-0 group-hover:opacity-100">
           {isPlaying ? (
