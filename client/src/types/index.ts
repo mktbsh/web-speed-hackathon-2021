@@ -59,6 +59,8 @@ export type InfiniteResponse<T> = {
 
 export type PostsResponse = InfiniteResponse<Post>;
 
+export type CommentsResponse = InfiniteResponse<Comment>;
+
 export type SignInReqBody = {
   name: string;
   password: string;

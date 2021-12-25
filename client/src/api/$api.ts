@@ -8,20 +8,23 @@ import { Methods as Methods1 } from './api/v1/posts'
 // prettier-ignore
 import { Methods as Methods2 } from './api/v1/posts/_id@string'
 // prettier-ignore
-import { Methods as Methods3 } from './api/v1/signin'
+import { Methods as Methods3 } from './api/v1/posts/_id@string/comments'
 // prettier-ignore
-import { Methods as Methods4 } from './api/v1/signup'
+import { Methods as Methods4 } from './api/v1/signin'
 // prettier-ignore
-import { Methods as Methods5 } from './terms.json'
+import { Methods as Methods5 } from './api/v1/signup'
+// prettier-ignore
+import { Methods as Methods6 } from './terms.json'
 
 // prettier-ignore
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '')
   const PATH0 = '/api/v1/me'
   const PATH1 = '/api/v1/posts'
-  const PATH2 = '/api/v1/signin'
-  const PATH3 = '/api/v1/signup'
-  const PATH4 = '/terms.json'
+  const PATH2 = '/comments'
+  const PATH3 = '/api/v1/signin'
+  const PATH4 = '/api/v1/signup'
+  const PATH5 = '/terms.json'
   const GET = 'GET'
   const POST = 'POST'
 
@@ -40,6 +43,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             const prefix3 = `${PATH1}/${val3}`
 
             return {
+              comments: {
+                get: (option: { query: Methods3['get']['query'], config?: T }) =>
+                  fetch<Methods3['get']['resBody']>(prefix, `${prefix3}${PATH2}`, GET, option).json(),
+                $get: (option: { query: Methods3['get']['query'], config?: T }) =>
+                  fetch<Methods3['get']['resBody']>(prefix, `${prefix3}${PATH2}`, GET, option).json().then(r => r.body),
+                $path: (option?: { method?: 'get'; query: Methods3['get']['query'] }) =>
+                  `${prefix}${prefix3}${PATH2}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+              },
               get: (option?: { config?: T }) =>
                 fetch<Methods2['get']['resBody']>(prefix, prefix3, GET, option).json(),
               $get: (option?: { config?: T }) =>
@@ -59,27 +70,27 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             `${prefix}${PATH1}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
         },
         signin: {
-          post: (option: { body: Methods3['post']['reqBody'], config?: T }) =>
-            fetch<Methods3['post']['resBody']>(prefix, PATH2, POST, option).json(),
-          $post: (option: { body: Methods3['post']['reqBody'], config?: T }) =>
-            fetch<Methods3['post']['resBody']>(prefix, PATH2, POST, option).json().then(r => r.body),
-          $path: () => `${prefix}${PATH2}`
-        },
-        signup: {
           post: (option: { body: Methods4['post']['reqBody'], config?: T }) =>
             fetch<Methods4['post']['resBody']>(prefix, PATH3, POST, option).json(),
           $post: (option: { body: Methods4['post']['reqBody'], config?: T }) =>
             fetch<Methods4['post']['resBody']>(prefix, PATH3, POST, option).json().then(r => r.body),
           $path: () => `${prefix}${PATH3}`
+        },
+        signup: {
+          post: (option: { body: Methods5['post']['reqBody'], config?: T }) =>
+            fetch<Methods5['post']['resBody']>(prefix, PATH4, POST, option).json(),
+          $post: (option: { body: Methods5['post']['reqBody'], config?: T }) =>
+            fetch<Methods5['post']['resBody']>(prefix, PATH4, POST, option).json().then(r => r.body),
+          $path: () => `${prefix}${PATH4}`
         }
       }
     },
     terms_json: {
       get: (option?: { config?: T }) =>
-        fetch<Methods5['get']['resBody']>(prefix, PATH4, GET, option).json(),
+        fetch<Methods6['get']['resBody']>(prefix, PATH5, GET, option).json(),
       $get: (option?: { config?: T }) =>
-        fetch<Methods5['get']['resBody']>(prefix, PATH4, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH4}`
+        fetch<Methods6['get']['resBody']>(prefix, PATH5, GET, option).json().then(r => r.body),
+      $path: () => `${prefix}${PATH5}`
     }
   }
 }
