@@ -44,9 +44,9 @@ export const SoundPlayer = ({ sound }: Props) => {
           type="button"
         >
           {isPlaying ? (
-            <FaPause className="inline-block leading-none fill-current" />
+            <FaPause className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />
           ) : (
-            <FaPlay className="inline-block leading-none fill-current" />
+            <FaPlay className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />
           )}
         </button>
       </div>

@@ -43,10 +43,14 @@ export const Navigation = memo(() => {
   return (
     <nav className="fixed z-10 bottom-0 left-0 right-0 h-12 bg-white border-t border-gray-300 lg:relative lg:w-48 lg:h-full lg:border-r lg:border-t-0">
       <ul className="relative grid grid-flow-col items-center justify-evenly lg:fixed lg:gap-2 lg:grid-flow-row lg:justify-start lg:p-2 lg:w-48 lg:h-full lg:auto-rows-min">
-        <NavigationItem href="/" icon={<FaHome className="inline-block leading-none fill-current" />} text="ホーム" />
+        <NavigationItem
+          href="/"
+          icon={<FaHome className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />}
+          text="ホーム"
+        />
         {activeUser && (
           <NavigationItem
-            icon={<FaEdit className="inline-block leading-none fill-current" />}
+            icon={<FaEdit className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />}
             text="投稿する"
             onClick={handleOpenPostModal}
           />
@@ -54,12 +58,14 @@ export const Navigation = memo(() => {
         {activeUser ? (
           <NavigationItem
             href={`/users/${activeUser.username}`}
-            icon={<FaUser className="inline-block leading-none fill-current" />}
+            icon={<FaUser className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />}
             text="マイページ"
           />
         ) : (
           <NavigationItem
-            icon={<FaSignInAlt className="inline-block leading-none fill-current" />}
+            icon={
+              <FaSignInAlt className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />
+            }
             text="サインイン"
             onClick={handleOpenAuthModal}
           />
@@ -67,7 +73,9 @@ export const Navigation = memo(() => {
         <NavigationItem
           href="/terms"
           preload={1}
-          icon={<FaBalanceScale className="inline-block leading-none fill-current" />}
+          icon={
+            <FaBalanceScale className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />
+          }
           text="利用規約"
         />
         <Suspense fallback={<div />}>
