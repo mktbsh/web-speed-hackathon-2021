@@ -31,7 +31,7 @@
     "dev:react": "react-scripts start",
     "dev:aspida": "aspida --watch",
     "aspida": "aspida",
-    "build": "aspida && workbox generateSW workbox-config.js && react-scripts build",
+    "build": "aspida && workbox generateSW workbox-config.js && BUILD_PATH='../dist' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "analyze": "BUILD_PATH='./build' yarn build && source-map-explorer 'build/static/js/*.js'"

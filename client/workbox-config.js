@@ -3,7 +3,7 @@ module.exports = {
   globPatterns: ['**/*.{ico,json,txt,css}'],
   swDest: 'public/sw.js',
   ignoreURLParametersMatching: [/^utm_/, /^fbclid$/],
-  sourcemap: process.env.NODE_ENV === 'development',
+  sourcemap: false,
   runtimeCaching: [
     {
       urlPattern: /.+(\/|.woff)$/,
