@@ -14,21 +14,20 @@ export const Modal = ({ onRequestCloseModal, children }: Props) => {
     bodyStyle.setProperty('overflow', 'hidden');
     app?.setAttribute('inert', 'true');
 
-    return () => {
-      bodyStyle.removeProperty('overflow');
-      app?.removeAttribute('inert');
-    };
-  }, []);
-
-  useEffect(() => {
     const handler = (ev: KeyboardEvent) => {
       if (ev.key === 'Escape') {
         onRequestCloseModal();
       }
     };
     document.addEventListener('keyup', handler);
-    return () => document.removeEventListener('keyup', handler);
-  }, [onRequestCloseModal]);
+
+    return () => {
+      bodyStyle.removeProperty('overflow');
+      app?.removeAttribute('inert');
+      document.removeEventListener('keyup', handler);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return createPortal(
     <div className="fixed z-10 bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-black bg-opacity-50">
