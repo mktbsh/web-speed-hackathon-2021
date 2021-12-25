@@ -1,12 +1,28 @@
 module.exports = {
   globDirectory: 'public/',
-  globPatterns: ['**/*.{ico,html,json,txt,css}'],
+  globPatterns: ['**/*.{ico,json,txt,css}'],
   swDest: 'public/sw.js',
   ignoreURLParametersMatching: [/^utm_/, /^fbclid$/],
   sourcemap: process.env.NODE_ENV === 'development',
   runtimeCaching: [
     {
       urlPattern: /.+(\/|.woff)$/,
+      handler: 'CacheFirst',
+    },
+    {
+      urlPattern: /.+(\/|.woff2)$/,
+      handler: 'CacheFirst',
+    },
+    {
+      urlPattern: /.+(\/|.png)$/,
+      handler: 'CacheFirst',
+    },
+    {
+      urlPattern: /.+(\/|.jpg)$/,
+      handler: 'CacheFirst',
+    },
+    {
+      urlPattern: /.+(\/|.svg)$/,
       handler: 'CacheFirst',
     },
     {
@@ -19,6 +35,10 @@ module.exports = {
     },
     {
       urlPattern: /.+(\/|.gif)$/,
+      handler: 'CacheFirst',
+    },
+    {
+      urlPattern: /.+(\/|.webm)$/,
       handler: 'CacheFirst',
     },
   ],
