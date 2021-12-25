@@ -24,6 +24,7 @@ const isUser = (data: any): data is UserResponse => {
 export const Navigation = memo(() => {
   const { data } = useQuery<UserResponse>(AspidaClient.api.v1.me.$path(), () => AspidaClient.api.v1.me.$get(), {
     refetchOnWindowFocus: true,
+    refetchInterval: 30 * 1000,
   });
 
   const activeUser = useMemo(() => {

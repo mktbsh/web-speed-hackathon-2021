@@ -34,9 +34,8 @@ export const NewPostModalContainer = ({ onRequestCloseModal }: Props) => {
     try {
       setIsLoading(true);
       const post = await sendNewPost(params);
-      console.log(post.id);
       onRequestCloseModal();
-      navigate({ to: './terms' });
+      navigate({ to: `/posts/${post.id}` });
     } catch (_) {
       setHasError(true);
     } finally {

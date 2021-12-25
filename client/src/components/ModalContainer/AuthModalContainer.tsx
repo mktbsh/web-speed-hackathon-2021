@@ -22,23 +22,26 @@ export const AuthModalContainer = ({ onRequestCloseModal }: Props) => {
     setHasError(false);
   }, []);
 
-  const handleSubmit = useCallback(async ({ type, ...params }: SubmitParams) => {
-    try {
-      setIsLoading(true);
-      if (type === 'signin') {
-        const user = await AspidaClient.api.v1.signin.$post({ body: params });
-        onUpdateActiveUser(user);
-      } else if (type === 'signup') {
-        const user = await AspidaClient.api.v1.signup.$post({ body: params });
-        onUpdateActiveUser(user);
+  const handleSubmit = useCallback(
+    async ({ type, ...params }: SubmitParams) => {
+      try {
+        setIsLoading(true);
+        if (type === 'signin') {
+          const user = await AspidaClient.api.v1.signin.$post({ body: params });
+          onUpdateActiveUser(user);
+        } else if (type === 'signup') {
+          const user = await AspidaClient.api.v1.signup.$post({ body: params });
+          onUpdateActiveUser(user);
+        }
+        onRequestCloseModal();
+      } catch (_err) {
+        setHasError(true);
+      } finally {
+        setIsLoading(false);
       }
-      onRequestCloseModal();
-    } catch (_err) {
-      setHasError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+    },
+    [onRequestCloseModal],
+  );
 
   return (
     <Modal onRequestCloseModal={onRequestCloseModal}>
