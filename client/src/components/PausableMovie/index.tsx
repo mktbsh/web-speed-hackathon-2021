@@ -25,7 +25,12 @@ export const PausableMovie = ({ id }: Props) => {
 
   return (
     <AspectRatio ratio={1}>
-      <button type="button" className="group relative block w-full h-full" onClick={handleClick}>
+      <button
+        type="button"
+        aria-label="video play/pause"
+        className="group relative block w-full h-full"
+        onClick={handleClick}
+      >
         <video
           ref={videoRef}
           className="w-full h-full object-cover"

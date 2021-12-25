@@ -42,6 +42,7 @@ export const SoundPlayer = ({ sound }: Props) => {
           className="flex items-center justify-center w-8 h-8 text-white text-sm bg-blue-600 rounded-full hover:opacity-75"
           onClick={handleTogglePlaying}
           type="button"
+          aria-label="sound play/pause"
         >
           {isPlaying ? (
             <FaPause className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />
