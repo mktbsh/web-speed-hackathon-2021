@@ -49,7 +49,7 @@ const Post = sequelize.define(
       ],
       order: [
         ['id', 'DESC'],
-        ['images', 'createdAt', 'ASC'],
+        ['images', 'id', 'ASC'],
       ],
     },
   },

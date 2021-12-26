@@ -14,14 +14,30 @@ async function insertSeeds() {
   await Image.bulkCreate(images, { logging: false });
   await Movie.bulkCreate(movies, { logging: false });
   await Sound.bulkCreate(sounds, { logging: false });
-  await User.bulkCreate(users.map(([id, username, name, description, password, profileImageId, createdAt]) => ({
-    id, username, name, description, password, profileImageId, createdAt
-  })), { logging: false });
+  await User.bulkCreate(
+    users.map(([id, username, name, description, password, profileImageId, createdAt]) => ({
+      id,
+      username,
+      name,
+      description,
+      password,
+      profileImageId,
+      createdAt,
+    })),
+    { logging: false },
+  );
   await Post.bulkCreate(posts, { logging: false });
-  await PostsImagesRelation.bulkCreate(postsImagesRelation.map(([postId, imageId]) => ({ postId, imageId })), { logging: false });
-  await Comment.bulkCreate(comments.map(([id, userId, postId, text, createdAt]) => ({
-    id, userId, postId, text, createdAt
-  })), { logging: false });
+  await PostsImagesRelation.bulkCreate(postsImagesRelation, { logging: false });
+  await Comment.bulkCreate(
+    comments.map(([id, userId, postId, text, createdAt]) => ({
+      id,
+      userId,
+      postId,
+      text,
+      createdAt,
+    })),
+    { logging: false },
+  );
 }
 
 export { insertSeeds };

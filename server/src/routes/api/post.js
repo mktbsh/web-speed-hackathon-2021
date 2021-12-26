@@ -14,7 +14,6 @@ router.get('/posts', async (req, res) => {
   const { count, rows } = await Post.findAndCountAll({
     limit: perPage,
     offset: (pageNum - 1) * perPage,
-    order: [['id', 'DESC']],
   });
 
   const posts = {
