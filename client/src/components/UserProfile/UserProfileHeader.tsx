@@ -31,7 +31,7 @@ export const UserProfileHeader = ({ user }: Props) => {
         <p className="pt-2">{user.description}</p>
         <p className="pt-2 text-gray-600 text-sm">
           <span className="pr-1">
-            <FontAwesomeIcon iconType="calendar-alt" styleType="solid" />
+            <FontAwesomeIcon iconType="calendar-alt" styleType="regular" />
           </span>
           <span>
             <time dateTime={user.createdAt}>
