@@ -1,13 +1,9 @@
 const getImagePath = (id: string) => `/images/${id}.webp`;
 
-const getMoviePath = (id: string) => `/movies/${id}.webm`;
-
-const getGifPath = (id: string) => `/movies/${id}.gif`;
-
-const getMoviePostarPath = (id: string) => `/movies/${id}.webp`;
+const getMoviePath = (id: string, ext: 'webm' | 'webp') => `/movies/${id}.${ext}`;
 
 const getSoundPath = (id: string) => `/sounds/${id}.mp3`;
 
-const getProfileImagePath = (id: string) => `/images/profiles/${id}.webp`;
+const getProfileImagePath = (id: string, mini?: boolean) => `/images/profiles/${id}${mini ? '.min' : ''}.webp`;
 
-export { getImagePath, getMoviePath, getGifPath, getMoviePostarPath, getSoundPath, getProfileImagePath };
+export { getImagePath, getMoviePath, getSoundPath, getProfileImagePath };
