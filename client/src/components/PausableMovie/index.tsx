@@ -24,7 +24,7 @@ export const PausableMovie = ({ id }: Props) => {
   }, []);
 
   return (
-    <AspectRatio ratio={1}>
+    <AspectRatio aspectHeight={1} aspectWidth={1}>
       <button
         type="button"
         aria-label="video play/pause"
@@ -40,7 +40,6 @@ export const PausableMovie = ({ id }: Props) => {
           playsInline
           autoPlay={!prefersReducedMotion}
           preload="metadata"
-          poster={getMoviePath(id, 'webp')}
         >
           <source src={getMoviePath(id, 'webm')} type="video/webm" />
         </video>

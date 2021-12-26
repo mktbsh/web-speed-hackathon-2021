@@ -10,7 +10,7 @@ type Props = {
 
 export const ImageArea = memo(({ images }: Props) => {
   return (
-    <AspectRatio ratio={16 / 9}>
+    <AspectRatio aspectHeight={9} aspectWidth={16}>
       <div className="grid gap-1 grid-cols-2 grid-rows-2 w-full h-full border border-gray-300 rounded-lg overflow-hidden">
         {images.map((image, idx) => {
           return (
@@ -23,9 +23,7 @@ export const ImageArea = memo(({ images }: Props) => {
                 images.length <= 2 || (images.length === 3 && idx === 0) ? 'row-span-2' : '',
               )}
             >
-              <div className="relative w-full h-full overflow-hidden">
-                <CoveredImage src={getImagePath(image.id)} alt={image.alt} width={image.width} height={image.height} />
-              </div>
+              <CoveredImage src={getImagePath(image.id)} alt={image.alt} width={image.width} height={image.height} />
             </div>
           );
         })}

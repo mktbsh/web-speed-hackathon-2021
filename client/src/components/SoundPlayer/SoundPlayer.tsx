@@ -51,7 +51,7 @@ export const SoundPlayer = ({ sound }: Props) => {
         <p className="whitespace-nowrap text-sm font-bold overflow-hidden overflow-ellipsis">{sound.title}</p>
         <p className="text-[#565b67] whitespace-nowrap text-sm overflow-hidden overflow-ellipsis">{sound.artist}</p>
         <div className="pt-2">
-          <AspectRatio ratio={10 / 1}>
+          <AspectRatio aspectHeight={1} aspectWidth={10}>
             <div className="relative w-full h-full">
               <div className="absolute inset-0 w-full h-full">
                 {data ? (
