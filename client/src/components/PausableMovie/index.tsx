@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { getMoviePath, getMoviePostarPath, getPrefersReducedMotion } from '../../utils';
+import { getMoviePath, getPrefersReducedMotion } from '../../utils';
 import { AspectRatio } from '../AspectRatio';
 
 import { FontAwesomeIcon } from '../FontAwesomeIcon/FontAwesomeIcon';
@@ -40,9 +40,9 @@ export const PausableMovie = ({ id }: Props) => {
           playsInline
           autoPlay={!prefersReducedMotion}
           preload="metadata"
-          poster={getMoviePostarPath(id)}
+          poster={getMoviePath(id, 'webp')}
         >
-          <source src={getMoviePath(id)} type="video/webm" />
+          <source src={getMoviePath(id, 'webm')} type="video/webm" />
         </video>
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-16 h-16 text-white text-3xl bg-black bg-opacity-50 rounded-full transform opacity-0 group-hover:opacity-100">
           <FontAwesomeIcon iconType={isPlaying ? 'pause' : 'play'} styleType="solid" />
