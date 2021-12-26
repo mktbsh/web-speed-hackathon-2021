@@ -13,7 +13,7 @@ import { AppProvider } from './providers/AppProvider';
 
 window.__BUILD_INFO__ = {
   BUILD_DATE: new Date().toISOString(),
-  COMMIT_HASH: process.env.SOURCE_VERSION,
+  COMMIT_HASH: process.env.REACT_APP_COMMIT_HASH,
 };
 
 ReactDOM.render(
