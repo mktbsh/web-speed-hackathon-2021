@@ -46,7 +46,12 @@ export const TimelineItem = memo(({ post }: Props) => {
             to={`/users/${post.user.username}`}
           >
             <VisualyHidden>{`to ${post.user.username}`}</VisualyHidden>
-            <img alt={post.user.profileImage.alt} src={getProfileImagePath(post.user.profileImage.id, true)} />
+            <img
+              alt={post.user.profileImage.alt}
+              src={getProfileImagePath(post.user.profileImage.id, true)}
+              width="72"
+              height="72"
+            />
           </Link>
         </div>
         <div className="flex-grow flex-shrink min-w-0">
