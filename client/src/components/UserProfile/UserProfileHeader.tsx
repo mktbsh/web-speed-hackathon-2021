@@ -1,9 +1,9 @@
 import FastAverageColor from 'fast-average-color';
 import { useCallback } from 'react';
 import { useState } from 'react';
-import { FaCalendarAlt } from 'react-icons/fa';
 import { User } from '../../types';
 import { getProfileImagePath } from '../../utils';
+import { FontAwesomeIcon } from '../FontAwesomeIcon/FontAwesomeIcon';
 
 type Props = {
   user: User;
@@ -31,7 +31,7 @@ export const UserProfileHeader = ({ user }: Props) => {
         <p className="pt-2">{user.description}</p>
         <p className="pt-2 text-gray-600 text-sm">
           <span className="pr-1">
-            <FaCalendarAlt className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />
+            <FontAwesomeIcon iconType="calendar-alt" styleType="solid" />
           </span>
           <span>
             <time dateTime={user.createdAt}>

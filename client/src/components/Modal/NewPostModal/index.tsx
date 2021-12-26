@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ModalErrorMessage } from '../ModalErrorMessage';
 import { ModalSubmitButton } from '../ModalSubmitButton';
 import { AttachFileInputButton } from './AttachFileInputButton';
-import { FaImages, FaMusic, FaVideo } from 'react-icons/fa';
+import { FontAwesomeIcon } from '../../FontAwesomeIcon/FontAwesomeIcon';
 
 export type PostSubmitParams = {
   images: File[];
@@ -108,21 +108,19 @@ export const NewPostModal = ({ hasError, isLoading, onResetError, onSubmit }: Pr
           <AttachFileInputButton
             accept="image/*"
             active={params.images.length !== 0}
-            icon={
-              <FaImages className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />
-            }
+            icon={<FontAwesomeIcon iconType="images" styleType="solid" />}
             onChange={handleChangeImages}
           />
           <AttachFileInputButton
             accept="audio/*"
             active={params.sound !== undefined}
-            icon={<FaMusic className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />}
+            icon={<FontAwesomeIcon iconType="music" styleType="solid" />}
             onChange={handleChangeSound}
           />
           <AttachFileInputButton
             accept="video/*"
             active={params.movie !== undefined}
-            icon={<FaVideo className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />}
+            icon={<FontAwesomeIcon iconType="video" styleType="solid" />}
             onChange={handleChangeMovie}
           />
         </p>

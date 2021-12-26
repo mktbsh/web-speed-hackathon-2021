@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useCallback, useRef } from 'react';
 
-import { FaPause, FaPlay } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import { Sound } from '../../types';
 import { getSoundPath } from '../../utils';
 import { AspectRatio } from '../AspectRatio';
+import { FontAwesomeIcon } from '../FontAwesomeIcon/FontAwesomeIcon';
 
 type Props = {
   sound: Sound;
@@ -44,11 +44,7 @@ export const SoundPlayer = ({ sound }: Props) => {
           type="button"
           aria-label="sound play/pause"
         >
-          {isPlaying ? (
-            <FaPause className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />
-          ) : (
-            <FaPlay className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />
-          )}
+          <FontAwesomeIcon iconType={isPlaying ? 'pause' : 'play'} styleType="solid" />
         </button>
       </div>
       <div className="flex flex-col flex-grow flex-shrink pt-2 min-w-0 h-full">

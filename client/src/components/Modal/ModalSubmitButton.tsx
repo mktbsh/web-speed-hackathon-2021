@@ -1,5 +1,5 @@
 import { classNames } from '../../utils';
-import { FaCircleNotch } from 'react-icons/fa';
+import { FontAwesomeIcon } from '../FontAwesomeIcon/FontAwesomeIcon';
 
 type Props = {
   children: string;
@@ -22,7 +22,7 @@ export const ModalSubmitButton = ({ children, disabled, loading, onClick }: Prop
       {loading && (
         <span className="pr-2">
           <span className="inline-block animate-spin">
-            <FaCircleNotch className="inline-block leading-none fill-current" style={{ verticalAlign: '-0.125rem' }} />
+            <FontAwesomeIcon iconType="circle-notch" styleType="solid" />
           </span>
         </span>
       )}
