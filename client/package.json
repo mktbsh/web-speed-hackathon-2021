@@ -31,8 +31,7 @@
     "aspida": "aspida",
     "build": "aspida && BUILD_PATH='../dist' react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "analyze": "BUILD_PATH='./build' yarn build && source-map-explorer 'build/static/js/*.js'"
+    "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3000",
   "eslintConfig": {
@@ -64,7 +63,6 @@
     "autoprefixer": "^10.4.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.5",
-    "source-map-explorer": "^2.5.2",
     "tailwindcss": "^3.0.6",
     "webpack": "^5.65.0"
   }
