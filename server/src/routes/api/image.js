@@ -36,7 +36,7 @@ router.post('/images', async (req, res) => {
   const { width, height } = await sharp(converted).metadata();
 
   const filePath = path.resolve(UPLOAD_PATH, `./images/${imageId}.${EXTENSION}`);
-  await fs.writeFile(filePath, converted);
+  fs.writeFile(filePath, converted);
 
   return res.status(200).type('application/json').send({ id: imageId, width, height, alt: '' });
 });

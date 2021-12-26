@@ -5,6 +5,8 @@
   "license": "MPL-2.0",
   "main": "src/index.js",
   "scripts": {
+    "dev": "nodemon --exec babel-node --experimental-wasm-threads src/index.js",
+    "predev": "npm-run-all prestart:clean prestart:init",
     "build": "echo noop",
     "prestart": "npm-run-all prestart:clean prestart:init",
     "start": "babel-node --experimental-wasm-threads src/index.js",
@@ -51,7 +53,8 @@
     "@types/serve-static": "1.13.10",
     "@types/sharp": "0.29.4",
     "@types/sqlite3": "3.1.7",
-    "@types/uuid": "8.3.3"
+    "@types/uuid": "8.3.3",
+    "nodemon": "^2.0.15"
   },
   "engines": {
     "node": "16.x.x"
