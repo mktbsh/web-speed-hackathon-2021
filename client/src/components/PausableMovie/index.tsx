@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { getMoviePath, getPrefersReducedMotion } from '../../utils';
+import { classNames, getMoviePath, getPrefersReducedMotion } from '../../utils';
 import { AspectRatio } from '../AspectRatio';
 
 import { FontAwesomeIcon } from '../FontAwesomeIcon/FontAwesomeIcon';
@@ -43,7 +43,12 @@ export const PausableMovie = ({ id }: Props) => {
         >
           <source src={getMoviePath(id, 'webm')} type="video/webm" />
         </video>
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-16 h-16 text-white text-3xl bg-black bg-opacity-50 rounded-full transform opacity-0 group-hover:opacity-100">
+        <div
+          className={classNames(
+            isPlaying ? 'opacity-0 group-hover:opacity-100' : '',
+            'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-16 h-16 text-white text-3xl bg-black bg-opacity-50 rounded-full transform',
+          )}
+        >
           <FontAwesomeIcon iconType={isPlaying ? 'pause' : 'play'} styleType="solid" />
         </div>
       </button>
