@@ -8,7 +8,7 @@ import { AspidaClient } from '../../lib/AspidaClient';
 const key = ReactQueryKeys.posts;
 
 export const HomePage = () => {
-  useSetHelmet({ title: 'タイムライン' });
+  useSetHelmet({ title: 'タイムライン', description: 'This is timeline page' });
 
   const fetcher = async ({ pageParam = 1 }) =>
     await AspidaClient.api.v1.posts.$get({
