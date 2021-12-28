@@ -5,16 +5,10 @@ import session from 'express-session';
 import { apiRouter } from './routes/api';
 import { staticRouter } from './routes/static';
 import compression from 'compression';
-import helmet from 'helmet';
 
 const app = Express();
 
 app.use(compression());
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  }),
-);
 app.set('trust proxy', true);
 
 app.use(
