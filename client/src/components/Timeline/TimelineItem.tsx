@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { memo } from 'react';
+import { isMobile } from 'react-device-detect';
 import { Link, useNavigate } from 'react-location';
 import type { Post } from '../../types';
 import { getProfileImagePath } from '../../utils';
@@ -49,8 +50,8 @@ export const TimelineItem = memo(({ post }: Props) => {
             <img
               alt={post.user.profileImage.alt}
               src={getProfileImagePath(post.user.profileImage.id, true)}
-              width="72"
-              height="72"
+              width={isMobile ? 46 : 62}
+              height={isMobile ? 46 : 62}
             />
           </Link>
         </div>

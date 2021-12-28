@@ -79,7 +79,7 @@ export const AuthModal = ({ hasError, isLoading, onRequestCloseModal, onResetErr
       <form className="flex flex-col items-center w-full" onSubmit={handleSubmit}>
         <h2 className="text-2xl font-bold">{params.type === 'signin' ? 'サインイン' : '新規登録'}</h2>
         <p className="mt-4">
-          <button className="text-green-600 underline" onClick={handleToggleType} type="button">
+          <button className="text-green-600 underline" onClick={handleToggleType} type="button" aria-label="サインイン">
             {params.type === 'signin' ? '初めての方はこちら' : 'サインインはこちら'}
           </button>
         </p>
