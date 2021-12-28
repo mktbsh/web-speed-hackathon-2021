@@ -39,6 +39,7 @@ export const PausableMovie = ({ id }: Props) => {
           muted
           playsInline
           autoPlay={!prefersReducedMotion}
+          poster={getMoviePath(id, 'webp')}
           preload="metadata"
         >
           <source src={getMoviePath(id, 'webm')} type="video/webm" />
