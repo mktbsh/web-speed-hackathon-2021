@@ -18,6 +18,7 @@ export const ModalSubmitButton = ({ children, disabled, loading, onClick }: Prop
       disabled={disabled}
       onClick={onClick}
       type="submit"
+      aria-label="submit"
     >
       {loading && (
         <span className="pr-2">
