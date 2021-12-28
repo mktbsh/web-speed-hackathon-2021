@@ -8,7 +8,7 @@ const router = Router();
 router.get('/posts', async (req, res) => {
   const { limit, page } = req.query;
 
-  const perPage = parseInt(limit) || 10;
+  const perPage = parseInt(limit) || 5;
   const pageNum = parseInt(page) || 1;
 
   const { count, rows } = await Post.findAndCountAll({
