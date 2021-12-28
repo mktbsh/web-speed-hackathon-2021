@@ -4,6 +4,8 @@ import { AspectRatio } from '../AspectRatio';
 
 import { FontAwesomeIcon } from '../FontAwesomeIcon/FontAwesomeIcon';
 
+import styles from './index.module.css';
+
 type Props = {
   id: string;
 };
@@ -25,15 +27,9 @@ export const PausableMovie = ({ id }: Props) => {
 
   return (
     <AspectRatio aspectHeight={1} aspectWidth={1}>
-      <button
-        type="button"
-        aria-label="video play/pause"
-        className="group relative block w-full h-full"
-        onClick={handleClick}
-      >
+      <button type="button" aria-label="video play/pause" className={`group ${styles.button}`} onClick={handleClick}>
         <video
           ref={videoRef}
-          className="w-full h-full object-cover"
           disablePictureInPicture
           loop
           muted
@@ -44,12 +40,7 @@ export const PausableMovie = ({ id }: Props) => {
         >
           <source src={getMoviePath(id, 'webm')} type="video/webm" />
         </video>
-        <div
-          className={classNames(
-            isPlaying ? 'opacity-0 group-hover:opacity-100' : '',
-            'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-16 h-16 text-white text-3xl bg-black bg-opacity-50 rounded-full transform',
-          )}
-        >
+        <div className={isPlaying ? styles.playing : ''}>
           <FontAwesomeIcon iconType={isPlaying ? 'pause' : 'play'} styleType="solid" />
         </div>
       </button>

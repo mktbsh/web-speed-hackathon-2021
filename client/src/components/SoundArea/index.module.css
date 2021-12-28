@@ -1,0 +1,3 @@
+.container {
+  @apply relative w-full h-full border border-gray-300 rounded-lg overflow-hidden;
+}
