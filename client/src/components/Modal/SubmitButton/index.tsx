@@ -1,5 +1,6 @@
-import { classNames } from '../../utils';
-import { FontAwesomeIcon } from '../FontAwesomeIcon/FontAwesomeIcon';
+import { FontAwesomeIcon } from '../../FontAwesomeIcon/FontAwesomeIcon';
+
+import styles from './index.module.css';
 
 type Props = {
   children: string;
@@ -11,18 +12,15 @@ type Props = {
 export const ModalSubmitButton = ({ children, disabled, loading, onClick }: Props) => {
   return (
     <button
-      className={classNames(
-        'block px-8 py-2 text-white bg-green-600 rounded',
-        disabled ? 'opacity-50 cursor-not-allowed' : '',
-      )}
+      className={`${styles.button} ${disabled ? styles.disabled : ''}`}
       disabled={disabled}
       onClick={onClick}
       type="submit"
       aria-label="submit"
     >
       {loading && (
-        <span className="pr-2">
-          <span className="inline-block animate-spin">
+        <span className={styles.loading}>
+          <span>
             <FontAwesomeIcon iconType="circle-notch" styleType="solid" />
           </span>
         </span>

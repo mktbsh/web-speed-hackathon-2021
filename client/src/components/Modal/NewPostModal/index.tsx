@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useState } from 'react';
-import { ModalErrorMessage } from '../ModalErrorMessage';
-import { ModalSubmitButton } from '../ModalSubmitButton';
+import { ModalErrorMessage } from '../ErrorMessage';
+import { ModalSubmitButton } from '../SubmitButton';
 import { AttachFileInputButton } from './AttachFileInputButton';
 import { FontAwesomeIcon } from '../../FontAwesomeIcon/FontAwesomeIcon';
 

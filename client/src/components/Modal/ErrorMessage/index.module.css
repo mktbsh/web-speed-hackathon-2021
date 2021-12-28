@@ -1,0 +1,7 @@
+.err {
+  @apply block h-6 text-red-600;
+}
+
+.err > span {
+  @apply mr-1;
+}

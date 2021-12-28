@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 
 import { Router } from 'react-location';
-import { ReactLocationDevtools } from 'react-location-devtools';
 
 import App from './App';
 import { location, routes } from './Router';
@@ -20,7 +19,6 @@ ReactDOM.render(
     <AppProvider>
       <Router routes={routes} location={location}>
         <App />
-        <ReactLocationDevtools />
       </Router>
     </AppProvider>
   </React.StrictMode>,
