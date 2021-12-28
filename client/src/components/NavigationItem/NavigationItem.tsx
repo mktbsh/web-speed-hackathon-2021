@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Link } from 'react-location';
+import { VisualyHidden } from '../VisualyHidden';
 
 type Props = {
   href?: string;
@@ -21,6 +22,7 @@ const Component = ({ href, preload, text, icon, onClick }: Props) => {
         >
           <span className="text-xl lg:pr-2 lg:text-3xl">{icon}</span>
           <span className="hidden sm:inline sm:text-sm lg:text-xl lg:font-bold">{text}</span>
+          <VisualyHidden>{text}</VisualyHidden>
         </Link>
       ) : (
         <button
