@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { getMoviePath, getPrefersReducedMotion } from '../../utils';
+import { classNames, getMoviePath, getPrefersReducedMotion } from '../../utils';
 import { AspectRatio } from '../AspectRatio';
 
 import { FontAwesomeIcon } from '../FontAwesomeIcon/FontAwesomeIcon';
