@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { HelmetStateProvider } from '../contexts/HelmetContext';
 
@@ -20,6 +21,7 @@ export const AppProvider = ({ children }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetStateProvider>{children}</HelmetStateProvider>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 };

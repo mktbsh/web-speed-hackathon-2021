@@ -4,7 +4,6 @@ import { AspidaClient } from '../../lib/AspidaClient';
 import { CommentItem } from './CommentItem';
 import { Post } from '../../types';
 import { useSetHelmet } from '../../contexts/HelmetContext';
-import { PostsLoader } from '../Loader';
 
 type Props = {
   post: Post;
@@ -36,7 +35,7 @@ export const PostPageItem = ({ post }: Props) => {
         renderItem={(item) => {
           return <CommentItem key={`${key}-${item.id}`} comment={item} />;
         }}
-        withLoader={<PostsLoader />}
+        withLoader={<div />}
         withError={<p>There was an error</p>}
       />
     </>

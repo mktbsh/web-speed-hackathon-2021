@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import type { FormEvent } from 'react';
-import { ModalSubmitButton } from '../SubmitButton';
-import { ModalErrorMessage } from '../ErrorMessage';
+import { ModalSubmitButton } from '../ModalSubmitButton';
+import { ModalErrorMessage } from '../ModalErrorMessage';
 import { AuthInput } from './AuthInput';
 import { Link } from 'react-location';
 
